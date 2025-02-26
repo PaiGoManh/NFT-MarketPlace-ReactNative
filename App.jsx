@@ -1,13 +1,26 @@
-import { Text, View } from 'react-native';
-import React from 'react';
-// Import this to make className work
-import 'nativewind';
-import "./global.css";
+import { createStackNavigator } from "@react-navigation/stack";
+import { NavigationContainer, DefaultTheme} from "@react-navigation/native";
+import { useFonts } from "expo-font";
 
-export default function App() {
+import Home from "./Pages/Home";
+import Details from "./Pages/Details";
+
+const Stack = createStackNavigator();
+
+const App = () => {
+
+  const [loaded] = useFonts({
+    
+  });
+
   return (
-    <View className="mt-[5%]">
-      <Text className="mt-5">Hi I'm Rahul</Text>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator screenOptions={{ headerShown : false }} initialRouteName="Home">
+        <Stack.Screen name="Home" component={Home}/>
+        <Stack.Screen name="Details" component={Details}/>
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
+
+export default App;
